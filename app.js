@@ -5,12 +5,12 @@ results = [];
 
 request('http://codeclan.com/about/', function(err, response, html){
   if(!err && response.statusCode == 200){
-    var $ = cheerio.load(html);
-    $('div.team-image').each(function(i, element){
-      var url = $(this).attr('style');
+    var loader = cheerio.load(html);
+    loader('div.team-image').each(function(i, element){
+      var url = loader(this).attr('style');
       results.push(url);
     });
-    
+
     for(result of results){
       console.log('Result:', result.substring(22, result.length-2))
     };
